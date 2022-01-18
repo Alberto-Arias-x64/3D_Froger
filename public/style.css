@@ -1,0 +1,81 @@
+:root{
+    --principal_color: #16792b;
+    --principal_color_light: #1b8f34;
+    --principal_color_dark: #0d501c;
+
+    --search_color: #474747;
+
+    --border_color:#2b5f21;
+    --active_color:#e64a69;
+}
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+html{
+    font-size: 62.5%;
+    font-family: sans-serif;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+/*//////////////////////head////////////////////////*/
+header{
+    min-height: 80px;
+    background-color: var(--principal_color);
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: 1fr auto;
+    font-size: 1.7rem;
+}
+#logo{
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#logo img{
+    width: 150px;
+    object-fit: contain;
+    cursor: pointer;
+}
+#up_seccion{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+#search div{
+    width: 300px;
+    height: 35px;
+    background-color:var(--search_color);
+}
+#search input{
+    height: 35px;
+    background-color:var(--search_color);
+    border: none;
+}
+#carrito{
+    display: flex;
+    justify-content: end;
+}
+#nav_buttons{
+    grid-row: 2;
+    grid-column: 1/3;
+    display: flex;
+    padding-left: 15px;
+    background-color: var(--principal_color_light);
+    border-top: var(--border_color) solid 2px;
+}
+#nav_buttons ul{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+}
+#nav_buttons ul li{
+    padding: 5px 20px;
+}
+#nav_buttons ul li:hover{
+    background-color: var(--principal_color_dark);
+    cursor: pointer;
+}
+/*//////////////////////main////////////////////////*/
