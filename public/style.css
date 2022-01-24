@@ -48,11 +48,24 @@ header{
     width: 300px;
     height: 35px;
     background-color:var(--search_color);
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    border-radius: 5px;
+}
+#search img{
+    height: 22px;
+    margin: 5px;
 }
 #search input{
     height: 35px;
+    width: 100%;
+    padding: 2px;
     background-color:var(--search_color);
     border: none;
+    border-radius: 5px;
+    font-size: 2rem;
+    color: aliceblue;
 }
 #carrito{
     display: flex;
@@ -79,3 +92,63 @@ header{
     cursor: pointer;
 }
 /*//////////////////////main////////////////////////*/
+section{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.backbround{
+    z-index: -1;
+    position: absolute;
+    width: 100vw;
+    height: 80vh;
+    object-fit: cover;
+    opacity: 0.4;
+}
+#grid_principal
+{
+    width: 90%;
+    height: 80vh;
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+}
+.principal_grid{
+    max-width: 100%;
+    max-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#contenido_principal{
+    display: flex;
+    flex-direction: column;
+    font-size: 4rem ;
+}
+/*//////////////////////cadrs seccions////////////////////////*/
+.secundario{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.grid_card{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.card{
+    width: 320px;
+    height: 200px;
+}
+.card div{
+    height: 30px;
+    background-color: var(--principal_color_light); 
+    display: flex;
+    flex-direction: row;
+}
+.card img{
+    width: 350px;
+    height: 170px;
+    object-fit: contain;
+}
