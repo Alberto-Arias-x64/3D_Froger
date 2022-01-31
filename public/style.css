@@ -140,6 +140,7 @@ section{
 .card{
     width: 320px;
     height: 200px;
+    margin: 10px;
 }
 .card div{
     height: 30px;

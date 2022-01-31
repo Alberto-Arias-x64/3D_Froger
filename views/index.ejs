@@ -2,7 +2,40 @@
 <body>
     <%- include('./templates/navbar.ejs')  %>
     <main>
-        <h1>la tienda de froger</h1>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias esse delectus autem quisquam possimus animi quam inventore sed, suscipit, nostrum placeat. Alias earum praesentium dolor minima sapiente laborum est vitae!</p>
+        <section>
+            <img class="backbround" src="/img/printer_3d.jpg" alt="">
+            <div id="grid_principal">
+                <div id="contenido_principal" class="principal_grid">
+                    <h1>Tu tienda 3D de confianza</h1>
+                    <p>La impresion 3d no habia sido tan facil y accesible</p>
+                </div>
+                <img class="principal_grid" src="/img/principal.png" alt="">
+            </div>
+        </section>
+        <section class="secundario">
+            <h1>Nuevo</h1>
+            <div class="grid_card">
+                <div class="card">
+                    <img src="img/froger_logo.jpg" alt="imagen">
+                    <div>
+                        <p>Rana 3D</p>
+                        <p>10.000</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="img/froger_logo.jpg" alt="imagen">
+                    <div>
+                        <p>Simio</p>
+                        <p>15.000</p>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+        <section class="secundario">
+            <h1>¿Qué es la impresión 3D?</h1>
+            <p>La impresión 3D, también llamada manufactura por adición (inglés), es un conjunto de procesos que producen objetos a través de la adición de material en capas que corresponden a las sucesivas secciones transversales de un modelo 3D. Los plásticos y las aleaciones de metal son los materiales más usados para impresión 3D, pero se puede utilizar casi cualquier cosa, desde hormigón hasta tejido vivo.</p>
+            <p>cita https://latinoamerica.autodesk.com/solutions/3d-printing</p>
+        </section>
     </main>
 </body>
