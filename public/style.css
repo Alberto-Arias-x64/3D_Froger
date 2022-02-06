@@ -7,6 +7,7 @@
 
     --border_color:#2b5f21;
     --active_color:#e64a69;
+    --background_color: rgb(230, 252, 232);
 }
 *{
     padding: 0%;
@@ -53,9 +54,9 @@ header{
     flex-direction: row;
     border-radius: 5px;
 }
-#search img{
-    height: 22px;
+#search svg{
     margin: 5px;
+    margin-top: 10px;
 }
 #search input{
     height: 35px;
@@ -70,6 +71,11 @@ header{
 #carrito{
     display: flex;
     justify-content: end;
+    margin: 5px;
+}
+#carrito svg{
+    width: 35px;
+    height: 35px;
 }
 #nav_buttons{
     grid-row: 2;
@@ -145,11 +151,82 @@ section{
 .card div{
     height: 30px;
     background-color: var(--principal_color_light); 
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    font-size: 1.6rem;
 }
-.card img{
+.card img{ 
     width: 350px;
     height: 170px;
     object-fit: contain;
+}
+.card .nombre{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 5px;
+}
+.card .precio{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding: 5px;
+}
+.card .precio svg{
+    display: none;
+}
+.card .precio:hover p{
+    display: none;
+}
+.card .precio:hover svg{
+    display: flex;
+}
+/*//////////////////////SEO////////////////////////*/
+#seo{
+    width: 100%;
+    height: auto;
+    background-color: var(--background_color);
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+}
+#seo_img{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+#seo_img img{
+    width: 80%;
+    margin: 10px;
+    border-radius: 5px;
+}
+#definicion{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    grid-column: 2;
+    text-align: justify;
+    padding: 10px;
+    font-size: 1.6rem;
+}
+/*//////////////////////footer////////////////////////*/
+footer{
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    background-color: var(--principal_color_light);
+}
+footer p{
+    display: flex;
+    align-items: center;
+    margin: 5px;
+}
+footer ul{
+    display: flex;
+    justify-content: end;
+    flex-direction: row;
+    list-style: none;
+}
+footer li{
+    margin: 5px;
+    margin-top: 10px;
 }
