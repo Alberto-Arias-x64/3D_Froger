@@ -5,8 +5,13 @@ const db = require('../models/modelo')
 router.get('/', (req, res) => {
     res.render('index')
 })
-router.get('/2', (req, res) => {
-    res.json(db.consultar_base())
+router.get('/consultar', (req, res) => {
+    db.consultar_base()
+    .then(respuesta => res.json(respuesta))
+})
+router.get('/:id', (req, res) => {
+    db.consultar_unico(req.params.id)
+    .then(respuesta => res.json(respuesta))
 })
 
 module.exports = router

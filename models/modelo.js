@@ -1,10 +1,11 @@
+require('dotenv').config({path:'../.env'})
 const mysql = require('mysql')
 
 db2 = mysql.createConnection({
-    host: '127.0.0.1',
-    port: '3306',
-    user: 'root',
-    password: 'micos64.98'
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD
 })
 db2.connect(function (error){
     if(error){console.log(error)}
@@ -17,21 +18,36 @@ db2.connect(function (error){
 
     db2.query('CREATE DATABASE IF NOT EXISTS company')
     db2.query('USE company')
-    db2.query('CREATE TABLE IF NOT EXISTS articulos2(nombre VARCHAR(50))')
+    db2.query('CREATE TABLE IF NOT EXISTS articulos2(nombre VARCHAR(50),precio INT)')
     
-    const db =new function() {
+    const db = new function() {
         this.consultar_base = function() {
-            db2.query('SELECT * FROM articulos',(err,rows) =>{
-                if(!err){
-                    return(rows)
-                }
-                else{
-                    console.log(err)
-                }
+            return new Promise ((resolve,reject)=>{
+                db2.query('SELECT * FROM articulos2',(err,rows) =>{
+                    if(!err){
+                        resolve(rows)
+                    }
+                    else{
+                        reject(err)
+                    }
+                })
+            })
+        }
+        this.consultar_unico = function(id) {
+            return new Promise ((resolve,reject)=>{
+                db2.query('SELECT * FROM articulos2 WHERE nombre = ?',[id],(err,rows) =>{
+                    if(!err){
+                        resolve(rows[0])
+                    }
+                    else{
+                        reject(err)
+                    }
+                })
             })
         }
         this.print = function(){
-            console.log("ok")
+            return("kk en el ano")
         }
     }
+
 module.exports = db

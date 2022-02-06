@@ -1,8 +1,9 @@
 //importacion
+require('dotenv').config({path:'./.env'})
 const express = require('express')
 const morgan = require('morgan')
 const app = express()
-const port = 3000
+const port = process.env.PORT
 
 //configuracion
 app.use(morgan('dev'))
