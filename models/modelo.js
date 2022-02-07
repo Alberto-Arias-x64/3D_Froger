@@ -40,13 +40,15 @@ db2.connect(function (error){
                         resolve(rows[0])
                     }
                     else{
-                        reject(err)
+                        resolve(err)
                     }
                 })
             })
         }
-        this.print = function(){
-            return("kk en el ano")
+        this.añadir_dato = function(datos){
+            return new Promise((resolve,reject)=>{
+                
+            })
         }
     }
 
