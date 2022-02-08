@@ -1,0 +1,26 @@
+<%- include('./templates/header.ejs')  %>
+<body>
+    <%- include('./templates/navbar.ejs')  %>
+        <main>
+            <p></p>
+            <section>
+                <img id="placeholder" style="height: 200px; width: 400px;" src="" alt=<%= nombre %>>
+                <div>
+                    <h1><%= nombre %></h1>
+                    <p><%= descripcion %></p>
+                    <h2><%= precio %></h2>
+                    <p>stock: <%= stock %></p>
+                    <p>cantidad:</p>
+                    <div>
+                        <button type="button">-</button>
+                        <input type="number">
+                        <button type="button">+</button>
+                    </div>
+                    <button type="button">Añadir al carrito</button>
+                </div>
+            </section>
+            <p id="url" style="display: none;"><%= imagen %></p>
+        </main>
+    <%- include('./templates/footer.ejs') %> 
+    <script src="main.js"></script>
+</body>

@@ -14,18 +14,21 @@
                     <option value="Decoracion">Decoracion</option>
                     <option value="Figuras">Figuras</option>
                     <option value="Hogar">Jugetes</option>
+                    <option value="GAY">GAY</option>
                 </select>
                 <p>Descripcion:</p>
                 <textarea name="descripcion" cols="30" rows="10"></textarea>
+                <p>Cantidad:</p>
+                <input type="number" name="stock">
                 <p>URL imagen:</p>
-                <input type="url" name="url">
+                <input type="url" name="url" placeholder="Solo google" onchange="buscar_imagen()">
                 <p>Contraseña:</p>
                 <input type="password" name="contraseña">
             </div>
             <button type="button" onclick="check()">Enviar</button>
         </main>
         <div style="height: 200px; width: 400px;">
-            <img style="height: 200px; width: 400px;" src="http://drive.google.com/uc?export=view&id=1q_quyG53XAeZtAb6Fwt9oI1p5LVyo8XI" alt="hulk">
+            <img id="placeholder" src="" style="height: 200px; width: 400px;" alt="No found">
         </div>
     <%- include('./templates/footer.ejs') %> 
     <script src="main.js"></script>
