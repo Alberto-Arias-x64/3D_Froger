@@ -20,9 +20,27 @@ html{
     overflow-x: hidden;
     scroll-behavior: smooth;
 }
+button{
+    padding: 5px;
+    background-color: var(--principal_color_light);
+    border: solid var(--principal_color_dark) 2px;
+    border-radius: 30px;
+    min-width: 30px;
+}
+button:hover{
+    cursor: pointer;
+}
+button:active{
+    background-color: var(--principal_color_dark);
+}
+section{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
 /*//////////////////////head////////////////////////*/
 header{
-    min-height: 80px;
+    height: 80px;
     background-color: var(--principal_color);
     display: grid;
     grid-template-columns: 1fr 5fr;
@@ -97,12 +115,30 @@ header{
     background-color: var(--principal_color_dark);
     cursor: pointer;
 }
-/*//////////////////////main////////////////////////*/
-section{
-    width: 100%;
-    display: flex;
-    justify-content: center;
+/*//////////////////////footer////////////////////////*/
+footer{
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    background-color: var(--principal_color_light);
+    height: 55px;
 }
+footer p{
+    display: flex;
+    align-items: center;
+    margin: 5px;
+}
+footer ul{
+    display: flex;
+    justify-content: end;
+    flex-direction: row;
+    list-style: none;
+}
+footer li{
+    margin: 5px;
+    margin-top: 10px;
+}
+/*//////////////////////main////////////////////////*/
+
 .backbround{
     z-index: -1;
     position: absolute;
@@ -209,27 +245,7 @@ section{
     padding: 10px;
     font-size: 1.6rem;
 }
-/*//////////////////////footer////////////////////////*/
-footer{
-    display: grid;
-    grid-template-columns: 3fr 2fr;
-    background-color: var(--principal_color_light);
-}
-footer p{
-    display: flex;
-    align-items: center;
-    margin: 5px;
-}
-footer ul{
-    display: flex;
-    justify-content: end;
-    flex-direction: row;
-    list-style: none;
-}
-footer li{
-    margin: 5px;
-    margin-top: 10px;
-}
+
 /*//////////////////////add////////////////////////*/
 #add{
     width: 350px;
@@ -239,4 +255,36 @@ footer li{
     grid-template-rows: 6;  
     grid-gap: 5px;
     margin: 5px;
+}
+/*//////////////////////show////////////////////////*/
+#show{
+    height: 550px;
+    align-items: center;
+}
+#show_div{
+    height: 400px;
+    width: 90vw;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    justify-items: center;
+}
+#placeholder{
+    object-fit: cover;
+    border-radius: 5px;
+    height: 400px;
+}
+#items{
+    width: 100%;
+    border: var(--search_color) solid 2px;
+    border-radius: 5px;
+    font-size: 1.6rem;
+    padding: 20px;
+}
+#items p{
+    margin: 10px 0;
+}
+#boton_carrito{
+    margin: 5px;
+    font-size: 2rem;
+    width: 90%;
 }

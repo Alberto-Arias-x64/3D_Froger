@@ -23,6 +23,12 @@ router.get('/:id', (req, res) => {
             res.render("404")
         }
         else{
+            const formatter = new Intl.NumberFormat('es-CO', {
+                style: 'currency',
+                currency: 'COP',
+                minimumFractionDigits: 0
+            })
+            respuesta.precio = formatter.format(respuesta.precio)
             res.render("show",respuesta)
         }
     })
