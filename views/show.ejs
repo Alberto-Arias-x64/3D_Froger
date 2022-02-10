@@ -1,8 +1,8 @@
 <%- include('./templates/header.ejs')  %>
-<body>
+<body onload="stock()">
     <%- include('./templates/navbar.ejs')  %>
         <main>
-            <section id="show">
+            <section id="show" class="principal">
                 <div id="show_div">
                     <img id="placeholder"  src="" alt=<%= nombre %>>
                     <div id="items">

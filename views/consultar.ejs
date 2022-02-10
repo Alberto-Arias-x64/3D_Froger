@@ -1,0 +1,46 @@
+<%- include('./templates/header.ejs')  %>
+<body>
+    <%- include('./templates/navbar.ejs')  %>
+        <main class="principal">
+            <h1>Listado de productos:</h1>
+            <section>
+                <table>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Categoria</th>
+                        <th>Descripcion</th>
+                        <th>Stock</th>
+                        <th>Imagen</th>
+                        <th>Accion</th>
+                    </tr>
+                    <tr>
+                        <td>Froger</td>
+                        <td>35000</td>
+                        <td>peo 2</td>
+                        <td>nel bicos nel 2</td>
+                        <td>1</td>
+                        <td>"imagen"</td>
+                        <td>
+                            <button type="button">Modificar</button>
+                            <button type="button">Eliminar</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Simio</td>
+                        <td>15000</td>
+                        <td>peo</td>
+                        <td>nel bicos nel</td>
+                        <td>10</td>
+                        <td>"imagen"</td>
+                        <td>
+                            <button type="button">Modificar</button>
+                            <button type="button">Eliminar</button>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+        </main>
+    <%- include('./templates/footer.ejs') %> 
+    <script src="main.js"></script>
+</body>

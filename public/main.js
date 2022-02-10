@@ -1,9 +1,6 @@
-console.log("ok")
-const direccion = "127.0.0.1:3000"
-
 document.querySelector('#placeholder').addEventListener(onload,imprimir_imagen())
 
-function check(){
+function extraer_datos(){
     let datos = {}
     datos["nombre"] = document.getElementsByName("nombre")[0].value
     datos["precio"] = document.getElementsByName("precio")[0].value
@@ -13,6 +10,11 @@ function check(){
     datos["stock"] = document.getElementsByName("stock")[0].value
     datos["contraseña"] = document.getElementsByName("contraseña")[0].value
     datos["validar"] = function(){
+    return(datos)
+}
+
+function check(){
+        let datos = extraer_datos()
         if(this.nombre && this.precio && this.url && this.contraseña){
             fetch("/add", {
                 method: "POST",
@@ -54,7 +56,6 @@ function buscar_imagen(url=0){
         //console.log("falla")
     }
 }
-
 function imprimir_imagen(){
     url = document.getElementById("url").innerText
     buscar_imagen(url)
@@ -85,4 +86,3 @@ function stock(){
         document.getElementById("boton_carrito").style.display="none"
     }
 }
-window.onload = stock()

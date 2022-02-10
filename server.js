@@ -13,6 +13,7 @@ app.set('view engine', 'ejs')
 
 //rutas de la web
 app.use('/',require('./router/rutas.js'))
+app.use('/admin',require('./router/admin.js'))
 
 //exepciones
 app.use((req, res, next) => {

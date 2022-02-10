@@ -61,6 +61,29 @@ db2.connect(function (error){
                 }
             })
         }
+        this.eliminar_dato = function(id){
+            return new Promise  ((resolve,reject)=>{
+                db2.query("DELETE FROM articulos WHERE id = ?",[id],err=>{
+                    if(!err){
+                        resolve({"mensaje":"ok"})
+                    }
+                    else{
+                        resolve({"mensaje":"error"})
+                    }
+                })
+            })
+        }
+        this.modificar_dato = function(id,datos){
+            return new Promise((resolve,reject)=>{
+                db2.query("UPDATE articulos SET nombre=?,precio=?,fecha=?,stock=?,categoria=?,descripcion=?,imagen=? WHERE id = ? ",[datos.nombre,datos.precio,fecha,datos.stock,datos.categoria,datos.descripcion,datos.url,id],(err,res)=>{
+                    if(!err){
+                        resolve({"mensaje":"ok"})
+                    }else{
+                        resolve({"mensaje":"error"})
+                    }
+                })
+            })
+        }
     }
 
 module.exports = db

@@ -38,6 +38,28 @@ section{
     display: flex;
     justify-content: center;
 }
+.principal{
+    min-height: calc(100vh - 80px - 55px) ;
+}
+.img_background{
+    z-index: -1;
+    position: absolute;
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+    opacity: 0.4;
+}
+table, th, td{
+    font-size: 1.6rem;
+    border: var(--principal_color) 2px solid;
+    border-collapse: collapse;
+}
+th, td{
+    padding: 5px;
+}
+th{
+    font-weight: bold;
+}
 /*//////////////////////head////////////////////////*/
 header{
     height: 80px;
@@ -139,14 +161,6 @@ footer li{
 }
 /*//////////////////////main////////////////////////*/
 
-.backbround{
-    z-index: -1;
-    position: absolute;
-    width: 100vw;
-    height: 80vh;
-    object-fit: cover;
-    opacity: 0.4;
-}
 #grid_principal
 {
     width: 90%;
@@ -245,7 +259,6 @@ footer li{
     padding: 10px;
     font-size: 1.6rem;
 }
-
 /*//////////////////////add////////////////////////*/
 #add{
     width: 350px;
@@ -258,7 +271,6 @@ footer li{
 }
 /*//////////////////////show////////////////////////*/
 #show{
-    height: 550px;
     align-items: center;
 }
 #show_div{
