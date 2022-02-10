@@ -8,6 +8,8 @@ const port = process.env.PORT
 //configuracion
 app.use(morgan('dev'))
 app.use(express.static('./public'))
+app.use('/producto/:id',express.static('./public'))
+app.use('/admin/add',express.static('./public'))
 app.use(express.json())
 app.set('view engine', 'ejs')
 
