@@ -1,5 +1,3 @@
-document.querySelector('#placeholder').addEventListener(onload,imprimir_imagen())
-
 function extraer_datos(){
     let datos = {}
     datos["nombre"] = document.getElementsByName("nombre")[0].value
@@ -9,34 +7,31 @@ function extraer_datos(){
     datos["url"] = document.getElementsByName("url")[0].value
     datos["stock"] = document.getElementsByName("stock")[0].value
     datos["contraseña"] = document.getElementsByName("contraseña")[0].value
-    datos["validar"] = function(){
+    console.log(datos)
     return(datos)
 }
-
 function check(){
-        let datos = extraer_datos()
-        if(this.nombre && this.precio && this.url && this.contraseña){
-            fetch("/add", {
-                method: "POST",
-                body: JSON.stringify({
-                    nombre:  datos["nombre"],
-                    precio: datos["precio"],
-                    categoria: datos["categoria"],
-                    descripcion: datos["descripcion"],
-                    stock: datos.stock,
-                    url: datos["url"],
-                    password: datos["contraseña"]
-                    }),
-                headers: {"Content-type": "application/json; charset=UTF-8"}
+    let datos = extraer_datos()
+    if(datos.nombre && datos.precio && datos.url && datos.contraseña){
+        fetch("/admin/add", {
+            method: "POST",
+            body: JSON.stringify({
+                nombre:  datos["nombre"],
+                precio: datos["precio"],
+                categoria: datos["categoria"],
+                descripcion: datos["descripcion"],
+                stock: datos.stock,
+                url: datos["url"],
+                password: datos["contraseña"]
+                }),
+            headers: {"Content-type": "application/json; charset=UTF-8"}
             })
-            .then(response => response.json())
-            .then(json => alert(json.mensaje));
+        .then(response => response.json())
+        .then(json => alert(json.mensaje));
         }
-        else{
-            alert("Campo Vacio")
-        }
+    else{
+        alert("Campo Vacio")
     }
-    datos.validar()
 }
 function buscar_imagen(url=0){
     if(url==0){
@@ -85,4 +80,21 @@ function stock(){
         stock.style.color="red"
         document.getElementById("boton_carrito").style.display="none"
     }
+}
+function validar(){
+    const usuario = document.getElementById("nombre").innerText
+    const contraseña = document.getElementById("contraseña").innerText
+    fetch("/admin/validar", {
+        method: "POST",
+        body: JSON.stringify({
+            nombre: usuario,
+            contraseña: contraseña,
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    })
+    .then(()=>{
+        pass
+    })
 }
