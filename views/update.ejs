@@ -2,12 +2,12 @@
 <body>
     <%- include('./templates/navbar.ejs')  %>
         <main>
-            <h1>Añadir producto</h1>
+            <h1>Editar producto</h1>
             <div id="add">
                 <p>Nombre:</p>
-                <input type="text" name="nombre" autofocus>
+                <input type="text" name="nombre" autofocus value="<%= datos.nombre %>">
                 <p>Precio:</p>
-                <input type="number" name="precio">
+                <input type="number" name="precio" value="<%= datos.precio %>">
                 <p>Categoria:</p>
                 <select name="categoria">
                     <option value="Animales">Animales</option>
@@ -15,15 +15,16 @@
                     <option value="Figuras">Figuras</option>
                     <option value="Hogar">Jugetes</option>
                     <option value="GAY">GAY</option>
+                    <option selected value="<%= datos.categoria %>"><%= datos.categoria %></option>
                 </select>
                 <p>Descripcion:</p>
-                <textarea name="descripcion" cols="30" rows="10"></textarea>
+                <textarea name="descripcion" cols="30" rows="10"><%= datos.descripcion%></textarea>
                 <p>Cantidad:</p>
-                <input type="number" name="stock">
+                <input type="number" name="stock" value="<%= datos.stock %>">
                 <p>URL imagen:</p>
-                <input type="url" name="url" placeholder="Solo google" onchange="buscar_imagen()">
+                <input type="url" name="url" placeholder="Solo google" onchange="buscar_imagen()" value="<%= datos.imagen %>" >
             </div>
-            <button type="button" onclick="check()">Enviar</button>
+            <button type="button" id="<%= datos.id %>" onclick="check_update(id)">Enviar</button>
         </main>
         <div style="height: 200px; width: 400px;">
             <img id="placeholder" src="" style="height: 200px; width: 400px;" alt="No found">

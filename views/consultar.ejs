@@ -1,10 +1,10 @@
 <%- include('./templates/header.ejs')  %>
-<body>
+<body onload="imprimir_tabla()">
     <%- include('./templates/navbar.ejs')  %>
         <main class="principal">
             <h1>Listado de productos:</h1>
             <section>
-                <table>
+                <table id="tabla">
                     <tr>
                         <th>Nombre</th>
                         <th>Precio</th>
@@ -13,33 +13,6 @@
                         <th>Stock</th>
                         <th>Imagen</th>
                         <th>Accion</th>
-                    </tr>
-                    <tr>
-                        <td>Froger</td>
-                        <td>35000</td>
-                        <td>peo 2</td>
-                        <td>nel bicos nel 2</td>
-                        <td>1</td>
-                        <td>"imagen"</td>
-                        <td>
-                            <button type="button">Modificar</button>
-                            <button type="button">Eliminar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Simio</td>
-                        <td>15000</td>
-                        <td>peo</td>
-                        <td>nel bicos nel</td>
-                        <td>10</td>
-                        <td>"imagen"</td>
-                        <td>
-                            <button type="button">Modificar</button>
-                            <button type="button">Eliminar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td id="boton_tabla" colspan="7"><a href="/admin/add"><button type="button">Añadir Nuevo</button></a></td>
                     </tr>
                 </table>
             </section>

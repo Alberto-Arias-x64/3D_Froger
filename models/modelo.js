@@ -41,20 +41,15 @@ const db = new function() {
     }
     this.añadir_dato = function(datos){
         return new Promise((resolve,reject)=>{
-            if(datos.password == process.env.FETCH_PASSWORD){
-                db2.query('INSERT INTO articulos(nombre,precio,stock,categoria,descripcion,imagen)VALUES(?,?,?,?,?,?)',[datos.nombre,datos.precio,datos.stock,datos.categoria,datos.descripcion,datos.url],(err)=>{
-                    if(!err){
-                        resolve({"mensaje":"ok"})
-                    }
-                    else{
-                        resolve({"mensaje":"error"})
-                        console.error(err)
-                    }
-                })
-            }
-            else{
-                resolve({"mensaje":"no"})
-            }
+            db2.query('INSERT INTO articulos(nombre,precio,stock,categoria,descripcion,imagen)VALUES(?,?,?,?,?,?)',[datos.nombre,datos.precio,datos.stock,datos.categoria,datos.descripcion,datos.url],(err)=>{
+                if(!err){
+                    resolve({"mensaje":"ok"})
+                }
+                else{
+                    resolve({"mensaje":"error"})
+                    console.error(err)
+                }
+            })
         })
     }
     this.eliminar_dato = function(id){
