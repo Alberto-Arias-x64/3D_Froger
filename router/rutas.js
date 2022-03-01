@@ -25,5 +25,8 @@ router.get('/producto/:id', (req, res) => {
 router.get('/contacto',(req,res) =>{
     res.render('contacto')
 })
+router.get('/servicios',(req,res) =>{
+    res.render('servicios')
+})
 
 module.exports = router

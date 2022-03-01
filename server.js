@@ -21,12 +21,6 @@ app.use(session({
   saveUninitialized: true,
 }))
 
-//variables globales
-app.use((req,res,next)=>{
-  app.locals.mensaje = "simio"
-  next()
-})
-
 //rutas de la web
 app.use('/',require('./router/rutas.js'))
 app.use('/admin',require('./router/admin.js'))

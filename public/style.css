@@ -4,10 +4,10 @@
     --principal_color_dark: #0d501c;
 
     --search_color: #474747;
+    --mantel_color: #d2e0d5;
 
     --border_color:#2b5f21;
     --active_color:#e64a69;
-    --background_color: rgb(230, 252, 232);
 }
 *{
     padding: 0%;
@@ -45,7 +45,7 @@ section{
     z-index: -1;
     position: absolute;
     width: 100%;
-    height: 80%;
+    height: 65%;
     object-fit: cover;
     opacity: 0.4;
 }
@@ -62,6 +62,16 @@ th{
 }
 td{
     text-align: center;
+    max-width: 200px;
+    max-height: 72px;
+    overflow: hidden;
+}
+input{
+    margin: 5px;
+    padding: 2px;
+    font-size: 1.6rem;
+    border: none;
+    border-bottom: var(--principal_color_light) solid 1px;
 }
 /*//////////////////////head////////////////////////*/
 header{
@@ -178,16 +188,15 @@ footer li{
 }
 /*//////////////////////main////////////////////////*/
 
-#grid_principal
-{
-    width: 90%;
-    height: 80vh;
+#grid_principal{
+    width: 80%;
+    height: 65vh;
     display: grid;
     grid-template-columns: 3fr 2fr;
 }
 .principal_grid{
     max-width: 100%;
-    max-height: 80vh;
+    max-height: 65vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -248,34 +257,6 @@ footer li{
 .card .precio:hover svg{
     display: flex;
 }
-/*//////////////////////SEO////////////////////////*/
-#seo{
-    width: 100%;
-    height: auto;
-    background-color: var(--background_color);
-    display: grid;
-    grid-template-columns: 2fr 3fr;
-}
-#seo_img{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-#seo_img img{
-    width: 80%;
-    margin: 10px;
-    border-radius: 5px;
-}
-#definicion{
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    grid-column: 2;
-    text-align: justify;
-    padding: 10px;
-    font-size: 1.6rem;
-}
 /*//////////////////////add////////////////////////*/
 #add{
     width: 350px;
@@ -325,4 +306,114 @@ footer li{
     border-radius: 5px;
     margin-top: 5px;
     padding: 20px;
+}
+/*/////////////////////Contacto///////////////////////*/
+#contacto > div{
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    margin: 5px;
+    background-color: var(--mantel_color) ;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 20px;
+}
+.mantel > div{
+    display: flex;
+    flex-direction: column;
+}
+#contacto h1{
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+#contacto h2{
+    font-size: 1.7rem;
+    margin-bottom: 12px;
+}
+#contacto p{    
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+}
+#contacto a{
+    font-size: 1.6rem;
+    text-decoration: none;
+    color: var(--principal_color_dark);
+    margin-bottom: 10px;
+}
+#contacto li{
+    font-size: 1.6rem;
+    position: relative;
+    left: 20px;
+    margin: 5px;
+}
+#contacto div textarea{
+    padding: 2px;
+    font-size: 1.6rem;
+}
+#formulario_contacto{
+    border: var(--principal_color_dark) solid 2px;
+    border-radius: 20px;
+    padding: 20px;
+    background: rgb(192, 190, 190);
+}
+#formulario_contacto *{
+    margin: 5px;
+}
+#datos_contacto *{
+    margin: 5px;
+}
+/*/////////////////////Servicios///////////////////////*/
+#servicios{
+    font-size: 1.6rem;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    padding: 50px;
+}
+#servicios div *{
+    margin: 10px;
+}
+#servicios img{
+    border-radius: 5px;
+    width: 300px;
+}
+#boton_contacto{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#boton_contacto button{
+    padding: 20px;
+}
+#boton_contacto > a > button{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 3rem;
+}
+/*//////////////////////SEO////////////////////////*/
+#seo{
+    width: 100%;
+    height: auto;
+    background-color: var(--mantel_color);
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+#seo_img{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+#seo_img img{
+    width: 90%;
+    margin: 10px;
+    border-radius: 5px;
+}
+#definicion{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    grid-column: 2;
+    text-align: justify;
+    padding: 10px;
+    font-size: 1.6rem;
 }
