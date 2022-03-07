@@ -22,8 +22,7 @@ app.use(session({
 }))
 
 //rutas de la web
-app.use('/',require('./router/rutas.js'))
-app.use('/admin',require('./router/admin.js'))
+app.use('/',require('./router/rutas'))
 
 //exepciones
 app.use((req, res, next) => {

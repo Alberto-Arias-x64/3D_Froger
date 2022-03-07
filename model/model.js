@@ -1,19 +1,29 @@
-require('dotenv').config({path:'../.env'})
 const mysql = require('mysql')
+require('dotenv').config({path:'../.env'})
 
 db2 = mysql.createPool({
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
-    database: "compani"
+    database: process.env.DB_DATABASE,
 })
 db2.getConnection(function (error){
     if(error){console.log(error)}
     else{console.log("base local ok")}
 })
+db2.query(`CREATE TABLE IF NOT EXISTS articulos(
+    id INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(50) NOT NULL,
+    precio INT NOT NULL,
+    categoria VARCHAR(50) NOT NULL,
+    stock INT NOT NULL, 
+    fecha TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    descripcion TEXT,
+    imagen VARCHAR(255)
+)`)
 
-const db = new function() {
+exports.db = new function() {
     this.consultar_base = function() {
         return new Promise ((resolve,reject)=>{
             db2.query('SELECT * FROM articulos',(err,rows) =>{
@@ -75,5 +85,3 @@ const db = new function() {
         })
     }
 }
-
-module.exports = db

@@ -1,9 +1,8 @@
-const express = require('express')
-const session = require('express-session')
 const res = require('express/lib/response')
-const router = express.Router()
-const db = require('../models/modelo')
-require('dotenv').config({path:'./.env'})
+const mysql = require('mysql')
+const session = require('express-session')
+const {db} = require('../model/model')
+require('dotenv').config({path:'../.env'})
 
 function validar_session(req){
     if(req.session.usuario == process.env.ADMIN_USER && req.session.password == process.env.ADMIN_PASSWORD){
@@ -13,16 +12,15 @@ function validar_session(req){
         return false
     }
 }
-
-router.get('/', (req, res) => {
+exports.main = (req,res) =>{
     if (validar_session(req)){
         res.render('consultar')
     }
     else{
         res.render('sign_up')
     }
-})
-router.post('/',(req,res)=>{
+}
+exports.login = (req,res) =>{
     req.session.usuario = req.body.usuario
     req.session.password = req.body.password
     if(validar_session(req)){
@@ -33,8 +31,8 @@ router.post('/',(req,res)=>{
         console.log(req.body)
         res.json({mensaje:"no"})
     }
-})
-router.get('/consultar',(req,res)=>{
+}
+exports.consultar = (req,res) =>{
     if (validar_session(req)){
         db.consultar_base()
         .then(respuesta =>{
@@ -42,18 +40,18 @@ router.get('/consultar',(req,res)=>{
         })
     }
     else{
-        res.redirect("/admin")
+        res.redirect('/admin')
     }
-})
-router.get('/add',(req,res) => {
+}
+exports.add = (req,rees) =>{
     if (validar_session(req)){
         res.render('add')
     }
     else{
-        res.redirect("/admin")
+        res.redirect('/admin')
     }
-})
-router.post('/add',(req,res) => {
+}
+exports.add_post = (req,res) =>{
     if (validar_session(req)){
         db.añadir_dato(req.body)
         .then(respuesta => res.json(respuesta))
@@ -61,8 +59,8 @@ router.post('/add',(req,res) => {
     else{
         res.render('sign_up')
     }
-})
-router.delete('/',(req,res)=>{
+}
+exports.delete = (req,res) =>{
     if (validar_session(req)){
         db.eliminar_dato(req.body.id)
         .then(respuesta => res.json(respuesta))
@@ -70,8 +68,8 @@ router.delete('/',(req,res)=>{
     else{
         res.render('sign_up')
     }
-})
-router.get('/update/:id',(req,res)=>{
+}
+exports.update = (req,res) =>{
     if (validar_session(req)){
         db.consultar_unico(req.params.id)
         .then(respuesta => {
@@ -80,10 +78,10 @@ router.get('/update/:id',(req,res)=>{
         })
     }
     else{
-        res.redirect("/admin")
+        res.redirect('/admin')
     }
-})
-router.post('/update/:id',(req,res)=>{
+}
+exports.update_post = (req,res) =>{
     if (validar_session(req)){
         db.modificar_dato(req.params.id,req.body)
         .then(respuesta => res.json(respuesta))
@@ -91,6 +89,4 @@ router.post('/update/:id',(req,res)=>{
     else{
         res.render('sign_up')
     }
-})
-
-module.exports = router
+}
