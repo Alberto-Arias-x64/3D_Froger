@@ -278,7 +278,7 @@ footer li{
     grid-template-columns: 3fr 1fr;
     justify-items: center;
 }
-#placeholder{
+#img_placeholder{
     object-fit: cover;
     border-radius: 5px;
     height: 400px;

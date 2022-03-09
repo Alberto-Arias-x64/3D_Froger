@@ -23,12 +23,12 @@
                 <p>Cantidad:</p>
                 <input type="number" name="stock">
                 <p>URL imagen:</p>
-                <input type="url" name="url" placeholder="Solo google" onchange="buscar_imagen()">
+                <input type="url" name="dir" placeholder="Solo google" onchange="imprimir_imagen()">
             </div>
             <button type="button" onclick="check()">Enviar</button>
         </main>
         <div style="height: 200px; width: 400px;">
-            <img id="placeholder" src="" style="height: 200px; width: 400px;" alt="No found">
+            <img id=img_placeholder src="" style="height: 200px; width: 400px;" alt="No found">
         </div>
     <%- include('./templates/footer.ejs') %> 
     <script src="main.js"></script>

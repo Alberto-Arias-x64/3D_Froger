@@ -1,5 +1,5 @@
 <%- include('./templates/header.ejs')  %>
-<body>
+<body onload="imprimir_imagen()">
     <%- include('./templates/navbar.ejs')  %>
         <main>
             <h1>Editar producto</h1>
@@ -24,12 +24,12 @@
                 <p>Cantidad:</p>
                 <input type="number" name="stock" value="<%= datos.stock %>">
                 <p>URL imagen:</p>
-                <input type="url" name="url" placeholder="Solo google" onchange="buscar_imagen()" value="<%= datos.imagen %>" >
+                <input type="url" name="dir" placeholder="Solo google" onchange="imprimir_imagen()" value="<%= datos.imagen %>" >
             </div>
             <button type="button" id="<%= datos.id %>" onclick="check_update(id)">Enviar</button>
         </main>
         <div style="height: 200px; width: 400px;">
-            <img id="placeholder" src="" style="height: 200px; width: 400px;" alt="No found">
+            <img id=img_placeholder src="" style="height: 200px; width: 400px;" alt="No found">
         </div>
     <%- include('./templates/footer.ejs') %> 
     <script src="main.js"></script>

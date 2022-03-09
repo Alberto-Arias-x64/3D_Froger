@@ -1,7 +1,7 @@
 async function traer_datos(){
-    let smo = fetch('/admin/consultar')
+    const tabla = fetch('/admin/consultar')
     .then(datos => datos.json())
-    return await smo
+    return await tabla
 }
 function imprimir_tabla(){
     const tabla = document.getElementById("tabla")
@@ -53,7 +53,7 @@ function extraer_datos(){
     datos["precio"] = document.getElementsByName("precio")[0].value
     datos["categoria"] = document.getElementsByName("categoria")[0].value
     datos["descripcion"] = document.getElementsByName("descripcion")[0].value
-    datos["url"] = document.getElementsByName("url")[0].value
+    datos["url"] = document.getElementsByName("dir")[0].value
     datos["stock"] = document.getElementsByName("stock")[0].value
     //console.log(datos)
     return(datos)

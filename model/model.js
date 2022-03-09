@@ -48,6 +48,19 @@ exports.db = new function() {
             })
         })
     }
+    /* this.consultar_unico = async id =>{
+        let respuesta
+        db2.query('SELECT * FROM articulos WHERE id = ?',[id],(err,rows) =>{
+            if(!err){
+                console.log("smo")
+                respuesta = rows[0]
+            }
+            else{
+                respuesta = {"mensaje":"no"}
+            }
+        } 
+        return(respuesta)
+    } */
     this.añadir_dato = function(datos){
         return new Promise((resolve,reject)=>{
             db2.query('INSERT INTO articulos(nombre,precio,stock,categoria,descripcion,imagen)VALUES(?,?,?,?,?,?)',[datos.nombre,datos.precio,datos.stock,datos.categoria,datos.descripcion,datos.url],(err)=>{
@@ -80,6 +93,18 @@ exports.db = new function() {
                     resolve({"mensaje":"ok"})
                 }else{
                     resolve({"mensaje":"error"})
+                }
+            })
+        })
+    }
+    this.consultar_nuevo = () =>{
+        return new Promise ((resolve, reject)=>{
+            db2.query('SELECT id,nombre,precio,imagen FROM articulos ORDER BY fecha DESC LIMIT 2',(err,res)=>{
+                if(!err){
+                    resolve(res)
+                }
+                else{
+                    resolve({mensaje:"no"})
                 }
             })
         })

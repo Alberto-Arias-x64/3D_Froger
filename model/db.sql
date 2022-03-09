@@ -10,4 +10,6 @@ CREATE TABLE IF NOT EXISTS articulos(
     descripcion TEXT,
     imagen VARCHAR(255)
 );
-DESCRIBE articulos
+DESCRIBE articulos;
+
+SELECT * FROM articulos ORDER BY fecha DESC LIMIT 2
