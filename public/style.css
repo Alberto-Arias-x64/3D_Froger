@@ -212,29 +212,44 @@ footer li{
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 20px 0;
+
+}
+.secundario > h1{
+    font-size: 5rem;
 }
 .grid_card{
     width: 90%;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: var(--mantel_color);
 }
 .card{
-    width: 320px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-width: 300px;
+    max-width: 350px;
     height: 200px;
     margin: 10px;
 }
-.card div{
+.card_img{
+    height: 170px;
+    padding-bottom: 5px;
+}
+.card_text{
     height: 30px;
     background-color: var(--principal_color_light); 
     display: grid;
     grid-template-columns: 3fr 1fr;
     font-size: 1.6rem;
 }
-.card img{ 
-    width: 350px;
-    height: 170px;
-    object-fit: contain;
+.card_img img{ 
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 .card .nombre{
     display: flex;
@@ -247,15 +262,6 @@ footer li{
     justify-content: end;
     align-items: center;
     padding: 5px;
-}
-.card .precio svg{
-    display: none;
-}
-.card .precio:hover p{
-    display: none;
-}
-.card .precio:hover svg{
-    display: flex;
 }
 /*//////////////////////add////////////////////////*/
 #add{
@@ -272,16 +278,22 @@ footer li{
     align-items: center;
 }
 #show_div{
-    height: 400px;
+    height: 500px;
     width: 90vw;
     display: grid;
     grid-template-columns: 3fr 1fr;
     justify-items: center;
+    background-color: var(--mantel_color);
+    padding: 20px;
+    margin: 20px;
+}
+#show_img{
+    height: calc(500px - 40px);
 }
 #img_placeholder{
     object-fit: cover;
     border-radius: 5px;
-    height: 400px;
+    height: 100%;
 }
 #items{
     width: 100%;

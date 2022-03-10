@@ -112,3 +112,8 @@ function check_update(id){
         alert("Campo Vacio")
     }
 }
+document.getElementById('read_key').addEventListener('keypress',function(e){
+    if(e.key == 'Enter'){
+        check()
+    }
+})

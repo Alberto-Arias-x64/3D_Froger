@@ -99,12 +99,24 @@ exports.db = new function() {
     }
     this.consultar_nuevo = () =>{
         return new Promise ((resolve, reject)=>{
-            db2.query('SELECT id,nombre,precio,imagen FROM articulos ORDER BY fecha DESC LIMIT 2',(err,res)=>{
+            db2.query('SELECT id,nombre,precio,imagen FROM articulos ORDER BY fecha DESC LIMIT 12',(err,res)=>{
                 if(!err){
                     resolve(res)
                 }
                 else{
                     resolve({mensaje:"no"})
+                }
+            })
+        })
+    }
+    this.consultar_categoria = categoria =>{
+        return new Promise ((resolve,reject) =>{
+            db2.query('SELECT id,nombre,precio,imagen FROM articulos WHERE categoria = ? LIMIT 40;',[categoria],(err,rows) =>{
+                if(!err){
+                    resolve(rows)
+                }
+                else{
+                    resolve({mensaje:"error"})
                 }
             })
         })

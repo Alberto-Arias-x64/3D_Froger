@@ -28,6 +28,17 @@ exports.login = (req,res) =>{
 exports.consultar = (req,res) =>{
     db.consultar_base()
     .then(respuesta =>{
+        const formatter = new Intl.NumberFormat('es-CO', {
+            style: 'currency',
+            currency: 'COP',
+            minimumFractionDigits: 0
+        })
+        respuesta.forEach(element => {
+            element.precio = formatter.format(element.precio)
+        });
+        return respuesta
+    })
+    .then(respuesta =>{
         res.json(respuesta)
     })
 }

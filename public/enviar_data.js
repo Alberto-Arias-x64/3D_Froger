@@ -19,3 +19,8 @@ function enviar_data(){
         }
     })
 }
+document.getElementById('read_key').addEventListener('keypress',function(e){
+    if(e.key == 'Enter'){
+        enviar_data()
+    }
+})

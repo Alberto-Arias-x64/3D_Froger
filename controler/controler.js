@@ -20,7 +20,6 @@ exports.servicios = (req,res) =>{
 exports.producto = (req,res) =>{
     db.consultar_unico(req.params.id)
     .then(respuesta => {
-        console.log(respuesta)
         if(!respuesta){
             res.render('404')
         }
@@ -44,7 +43,23 @@ exports.carrito_post = (req,res) =>{
 }
 exports.buscar_nuevo = (req,res) =>{
     db.consultar_nuevo()
-    .then(respuesta => {
-        res.json(respuesta)
+    .then(respuesta =>{
+        const formatter = new Intl.NumberFormat('es-CO', {
+            style: 'currency',
+            currency: 'COP',
+            minimumFractionDigits: 0
+        })
+        respuesta.forEach(element => {
+            element.precio = formatter.format(element.precio)
+        });
+        return respuesta
     })
+    .then(respuesta => res.json(respuesta))
+}
+exports.busqueda_categoria = (req,res)=>{
+    res.render('busqueda',{categoria : req.params.categoria})
+}
+exports.busqueda_categoria_post = (req,res)=>{
+    db.consultar_categoria(req.body.categoria)
+    .then(respuesta => res.json(respuesta))
 }

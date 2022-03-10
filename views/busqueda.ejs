@@ -1,0 +1,14 @@
+<%- include('./templates/header.ejs')  %>
+<body onload="add_card_categoria()">
+    <%- include('./templates/navbar.ejs')  %>
+    <main>
+        <section class="principal">
+            <h1 id="categoria"><%= categoria %></h1>
+            <div class="grid_card">
+                
+            </div>
+        </section>
+    </main>
+    <%- include('./templates/footer.ejs') %> 
+    <script src="main.js"></script>
+</body>

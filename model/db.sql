@@ -12,4 +12,6 @@ CREATE TABLE IF NOT EXISTS articulos(
 );
 DESCRIBE articulos;
 
-SELECT * FROM articulos ORDER BY fecha DESC LIMIT 2
+SELECT * FROM articulos ORDER BY fecha DESC LIMIT 2;
+
+SELECT id FROM articulos WHERE categoria = 'Arte' LIMIT 40;
