@@ -11,6 +11,10 @@ exports.main = (req,res) => {
         res.render('404')
     }
 }
+exports.categorias = (req,res) =>{
+    db.categorias()
+    .then(respuesta => res.json(respuesta))
+}
 exports.contacto = (req,res) => {
     res.render('contacto')
 }

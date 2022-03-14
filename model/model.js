@@ -22,8 +22,20 @@ db2.query(`CREATE TABLE IF NOT EXISTS articulos(
     descripcion TEXT,
     imagen VARCHAR(255)
 )`)
+db2.query(`CREATE TABLE IF NOT EXISTS categorias(
+    categoria VARCHAR(50) NOT NULL
+)`)
 
 exports.db = new function() {
+    this.categorias = () =>{
+        return new Promise ((resolve,reject) =>{
+            db2.query('SELECT * FROM categorias ORDER BY categoria',(err,res) =>{
+                if(!err){
+                    resolve(res)
+                }
+            })
+        })
+    }
     this.consultar_base = function() {
         return new Promise ((resolve,reject)=>{
             db2.query('SELECT * FROM articulos',(err,rows) =>{
@@ -99,7 +111,7 @@ exports.db = new function() {
     }
     this.consultar_nuevo = () =>{
         return new Promise ((resolve, reject)=>{
-            db2.query('SELECT id,nombre,precio,imagen FROM articulos ORDER BY fecha DESC LIMIT 12',(err,res)=>{
+            db2.query('SELECT id,nombre,precio,imagen FROM articulos WHERE stock != 0 ORDER BY fecha DESC LIMIT 12',(err,res)=>{
                 if(!err){
                     resolve(res)
                 }

@@ -109,8 +109,22 @@ function add_card_categoria(){
         }
     })
 }
-document.getElementById('read_key').addEventListener('keypress',function(e){
-    if(e.key == 'Enter'){
-        alert("enter XD")
-    }
-})
+function add_categorias(){
+    fetch('/categorias')
+    .then(respuesta => respuesta.json())
+    .then(respuesta =>{
+        let categorias = []
+        respuesta.forEach(element => {
+            categorias.push(element.categoria)
+        });
+        return categorias
+    })
+    .then(respuesta =>{
+        const categoria = document.getElementById('add_categorias')
+        respuesta.forEach(element => {
+            let insercion =`<a href="/lista/${element}"><li>${element}</li></a>`
+            categoria.insertAdjacentHTML("beforeend",insercion)
+        })
+    })
+}
+window.onload = add_categorias

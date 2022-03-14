@@ -112,6 +112,33 @@ function check_update(id){
         alert("Campo Vacio")
     }
 }
+function add_options(){
+    fetch('/categorias')
+    .then(respuesta => respuesta.json())
+    .then(respuesta =>{
+        let categorias = []
+        respuesta.forEach(element => {
+            categorias.push(element.categoria)
+        });
+        return categorias
+    })
+    .then(respuesta =>{
+        const categoria = document.getElementById('add_optins')
+        respuesta.forEach(element => {
+            let insercion =`<option value=${element}>${element}</option>`
+            categoria.insertAdjacentHTML("beforeend",insercion)
+        })
+    })
+}
+if(window.location.href === 'http://127.0.0.1:3000/admin/'){
+    window.onload = imprimir_tabla
+}
+if(window.location.href === 'http://127.0.0.1:3000/admin/add/'){
+    window.onload = add_options
+}
+if(window.location.href.indexOf('update') != -1){
+    window.onload = add_options
+}
 document.getElementById('read_key').addEventListener('keypress',function(e){
     if(e.key == 'Enter'){
         check()
