@@ -128,3 +128,22 @@ function add_categorias(){
     })
 }
 window.onload = add_categorias
+if (window.location.href === 'http://127.0.0.1:3000/'){
+    window.onload = () =>{
+        add_categorias()
+        add_card()  
+    }
+}
+if (window.location.href.indexOf('producto') != -1){
+    window.onload = () =>{  
+        add_categorias()
+        stock()
+        imprimir_imagen()
+    }
+}
+if (window.location.href.indexOf('lista') != -1){
+    window.onload = () =>{
+        add_categorias()
+        add_card_categoria()
+    }
+}

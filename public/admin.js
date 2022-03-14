@@ -131,13 +131,22 @@ function add_options(){
     })
 }
 if(window.location.href === 'http://127.0.0.1:3000/admin/'){
-    window.onload = imprimir_tabla
+    window.onload = () =>{
+        imprimir_tabla()
+        add_categorias()
+    }
 }
 if(window.location.href === 'http://127.0.0.1:3000/admin/add/'){
-    window.onload = add_options
+    window.onload = () =>{
+        add_options()
+        add_categorias()
+    }
 }
 if(window.location.href.indexOf('update') != -1){
-    window.onload = add_options
+    window.onload = () =>{
+        add_options()
+        imprimir_imagen()
+    } 
 }
 document.getElementById('read_key').addEventListener('keypress',function(e){
     if(e.key == 'Enter'){
