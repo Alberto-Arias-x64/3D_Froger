@@ -42,8 +42,7 @@ exports.carrito = (req,res) =>{
     res.render('carrito')
 }
 exports.carrito_post = (req,res) =>{
-    req.session.producto=req.body
-    res.json({mensaje:"Añadido al carrito"})
+    //todo
 }
 exports.buscar_nuevo = (req,res) =>{
     db.consultar_nuevo()
@@ -66,4 +65,21 @@ exports.busqueda_categoria = (req,res)=>{
 exports.busqueda_categoria_post = (req,res)=>{
     db.consultar_categoria(req.body.categoria)
     .then(respuesta => res.json(respuesta))
+}
+exports.busqueda_producto = (req,res) =>{
+    db.consultar_unico(req.params.id)
+    .then(respuesta => {
+        if(!respuesta){
+            res.render('404')
+        }
+        else{
+            const formatter = new Intl.NumberFormat('es-CO', {
+                style: 'currency',
+                currency: 'COP',
+                minimumFractionDigits: 0
+            })
+            respuesta.precio_bonito = formatter.format(respuesta.precio)
+            res.json(respuesta)
+        }
+    })
 }

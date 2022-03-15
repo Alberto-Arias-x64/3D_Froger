@@ -127,6 +127,37 @@ function add_categorias(){
         })
     })
 }
+function add_to_car(){
+    const id = window.location.href.split('/')
+    const cantidad = document.getElementById('cantidad').value
+    if(localStorage.carrito){
+        localStorage.carrito = localStorage.carrito+[id[4],cantidad]
+    }
+    else{
+        localStorage.carrito = [id[4],cantidad]
+    }
+}
+function display_car(){
+    let productos = localStorage.getItem('carrito')
+    const carrito = document.getElementById('carrito_productos')
+    productos = productos.split(',')
+    for (let index = 0; index < productos.length; index+=2) {
+        fetch(`/carrito/${productos[index]}`)
+        .then(res => res.json())
+        .then(res =>{
+            const subtotal = res.precio * productos[index+1]
+            const insercion = `
+                <tr>
+                    <td>${res.nombre}</td>
+                    <td>${res.precio_bonito}</td>
+                    <td>${productos[index+1]}</td>
+                    <td>${subtotal}</td>
+                </tr>
+            `
+            carrito.insertAdjacentHTML("beforeend",insercion)
+        })
+    }
+}
 window.onload = add_categorias
 if (window.location.href === 'http://127.0.0.1:3000/'){
     window.onload = () =>{
@@ -134,16 +165,19 @@ if (window.location.href === 'http://127.0.0.1:3000/'){
         add_card()  
     }
 }
-if (window.location.href.indexOf('producto') != -1){
+if (window.location.href.includes('producto')){
     window.onload = () =>{  
         add_categorias()
         stock()
         imprimir_imagen()
     }
 }
-if (window.location.href.indexOf('lista') != -1){
+if (window.location.href.includes('lista')){
     window.onload = () =>{
         add_categorias()
         add_card_categoria()
     }
+}
+if (window.location.href.endsWith('carrito')){
+    window.onload = display_car
 }

@@ -3,7 +3,17 @@
     <%- include('./templates/navbar.ejs')  %>
     <main>
         <section class="principal">
-            <p>toca hacer el carrito</p>
+            <div>
+                <h1>Carrito de compras</h1>
+                <table id="carrito_productos">
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </table>
+            </div>
         </section>
     </main>
     <%- include('./templates/footer.ejs') %> 

@@ -130,19 +130,19 @@ function add_options(){
         })
     })
 }
-if(window.location.href === 'http://127.0.0.1:3000/admin/'){
+if(window.location.href.endsWith('admin/')){
     window.onload = () =>{
         imprimir_tabla()
         add_categorias()
     }
 }
-if(window.location.href === 'http://127.0.0.1:3000/admin/add/'){
+if(window.location.href.includes('add')){
     window.onload = () =>{
         add_options()
         add_categorias()
     }
 }
-if(window.location.href.indexOf('update') != -1){
+if(window.location.href.includes('update')){
     window.onload = () =>{
         add_options()
         imprimir_imagen()
