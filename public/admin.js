@@ -20,7 +20,7 @@ function imprimir_tabla(){
                         <td>${datos[index].imagen}</td>
                         <td>
                             <button type="button" name = ${datos[index].id} onclick="actualizar_dato(name)">Modificar</button>
-                            <button type="button" name = ${datos[index].id} onclick="eliminar_dato(name)">Eliminar</button>
+                            <button class="button_red" type="button" name = ${datos[index].id} onclick="eliminar_dato(name)">Eliminar</button>
                         </td>
                     </tr>`
                     tabla.insertAdjacentHTML("beforeend",insercion)

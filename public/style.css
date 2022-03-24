@@ -33,6 +33,10 @@ button:hover{
 button:active{
     background-color: var(--principal_color_dark);
 }
+.button_red{
+    background-color: #f82323b2;
+    border: #a70808 2px solid;
+}
 section{
     width: 100%;
     display: flex;
@@ -51,7 +55,9 @@ section{
 }
 table, th, td{
     font-size: 1.6rem;
-    border: var(--principal_color) 2px solid;
+    /*order: var(--principal_color) 2px solid;*/
+    border-top: var(--principal_color) 2px solid;
+    border-bottom: var(--principal_color) 2px solid;
     border-collapse: collapse;
 }
 th, td{
@@ -61,7 +67,7 @@ th{
     font-weight: bold;
 }
 tbody:nth-child(even){
-    background-color: #4747475e;
+    background-color: #a39f9f5e;
 }
 td{
     text-align: center;
@@ -79,6 +85,13 @@ input{
 input:focus{
     outline: none;
 }
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=number] { -moz-appearance:textfield; }
 /*//////////////////////head////////////////////////*/
 header{
     height: 80px;
@@ -131,6 +144,10 @@ header{
     display: flex;
     justify-content: end;
     margin: 5px;
+}
+#carrito_items{
+    color: #141414;
+    text-decoration: none;
 }
 #carrito svg{
     width: 35px;
@@ -316,6 +333,9 @@ footer li{
     font-size: 2rem;
     width: 90%;
 }
+#cantidad{
+    width: 40px;
+}
 /*/////////////////////SIGN_up///////////////////////*/
 #sign_up > div{
     display: flex;
@@ -434,4 +454,34 @@ footer li{
     text-align: justify;
     padding: 10px;
     font-size: 1.6rem;
+}
+/*//////////////////////Carrito////////////////////////*/
+td > a > img{
+    width: calc(400px * 0.4);
+    height: calc(250px * 0.4);
+}
+/*/////////////////////pay////////////////////////////*/
+#pay{
+    font-size: 1.5rem;
+    width: 400px;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--mantel_color);
+}
+#pay > div{
+    display: flex;
+    flex-direction: column;
+}
+#pay > div > *{
+    margin: 2px;
+}
+#radio_seccion{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+#radio_seccion > *{
+    margin: 5px 0;
 }

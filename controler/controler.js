@@ -4,7 +4,6 @@ const {db} = require('../model/model')
 
 exports.main = (req,res) => {
     try{
-        console.log(req.session.producto)
         res.render('index')
     }
     catch (error){
@@ -41,8 +40,12 @@ exports.producto = (req,res) =>{
 exports.carrito = (req,res) =>{
     res.render('carrito')
 }
-exports.carrito_post = (req,res) =>{
-    //todo
+exports.comprar = (req,res) =>{
+    res.render('comprar')
+}
+exports.comprar_post = (req,res) =>{
+    req.body
+    res.json({'status':'todo'})
 }
 exports.buscar_nuevo = (req,res) =>{
     db.consultar_nuevo()
@@ -82,4 +85,7 @@ exports.busqueda_producto = (req,res) =>{
             res.json(respuesta)
         }
     })
+}
+exports.pago = (req,res) =>{
+    res.render('pago')
 }

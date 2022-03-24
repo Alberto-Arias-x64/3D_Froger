@@ -110,6 +110,7 @@ function add_card_categoria(){
     })
 }
 function add_categorias(){
+    car_list()
     fetch('/categorias')
     .then(respuesta => respuesta.json())
     .then(respuesta =>{
@@ -130,33 +131,102 @@ function add_categorias(){
 function add_to_car(){
     const id = window.location.href.split('/')
     const cantidad = document.getElementById('cantidad').value
+    let flag = false
     if(localStorage.carrito){
-        localStorage.carrito = localStorage.carrito+[id[4],cantidad]
+        let productos = localStorage.getItem('carrito')
+        productos = productos.split(',')
+        for (let index = 0; index < productos.length; index+=2) {
+            if(id[4] == productos[index]){
+                productos[index+1] = cantidad
+                localStorage.carrito = productos
+                flag = true
+                break
+            }
+        }
+        if(!flag){
+            localStorage.carrito = localStorage.carrito.concat(','+id[4]+','+cantidad)
+        }
     }
     else{
         localStorage.carrito = [id[4],cantidad]
     }
+    window.location.href =  '/carrito'
 }
 function display_car(){
     let productos = localStorage.getItem('carrito')
     const carrito = document.getElementById('carrito_productos')
     productos = productos.split(',')
-    for (let index = 0; index < productos.length; index+=2) {
-        fetch(`/carrito/${productos[index]}`)
-        .then(res => res.json())
-        .then(res =>{
-            const subtotal = res.precio * productos[index+1]
-            const insercion = `
-                <tr>
-                    <td>${res.nombre}</td>
-                    <td>${res.precio_bonito}</td>
-                    <td>${productos[index+1]}</td>
-                    <td>${subtotal}</td>
-                </tr>
-            `
-            carrito.insertAdjacentHTML("beforeend",insercion)
-        })
+    async function tabla (){
+        let total = 0
+        for (let index = 0; index < productos.length; index+=2) {
+            await fetch(`/carrito/${productos[index]}`)
+            .then(res => res.json())
+            .then(res =>{
+                let subtotal = res.precio * productos[index+1]
+                total += subtotal
+                const formatter = new Intl.NumberFormat('es-CO', {
+                    style: 'currency',
+                    currency: 'COP',
+                    minimumFractionDigits: 0
+                })
+                subtotal = formatter.format(subtotal)
+                const insercion = `
+                    <tr>
+                        <td>${res.nombre}</td>
+                        <td><a href="/producto/${res.id}"><img src="${buscar_imagen(res.imagen)}" alt="Producto"></a></td>
+                        <td>${res.precio_bonito}</td>
+                        <td>${productos[index+1]}</td>
+                        <td>${subtotal}</td>
+                        <td>
+                                <button class="button_red" id ="${res.id}" onclick="eliminar_carrito(id)">Eliminar</button>
+                        </td>
+                    </tr>
+                `
+                carrito.insertAdjacentHTML("beforeend",insercion)
+            })
+        }
+        return total
     }
+    tabla().then(res => {
+        const formatter = new Intl.NumberFormat('es-CO', {
+            style: 'currency',
+            currency: 'COP',
+            minimumFractionDigits: 0
+        })
+        res = formatter.format(res)
+        const insercion =
+        `<tr>
+            <td colspan = '4'>Total</td>
+            <td>${res}</td>
+            <td>
+                <a href="/pago"><button id ="${res.id}">Pagar</button></a>
+            </td>
+        </tr>
+        `
+        carrito.insertAdjacentHTML("beforeend",insercion)
+    })
+}
+function eliminar_carrito(id){
+    let productos = localStorage.getItem('carrito')
+    productos = productos.split(',')
+    for (let index = 0; index < productos.length; index+=2) {
+        if(id == productos[index]){
+            productos.splice(index,2)
+            localStorage.carrito = productos
+            break
+        }
+    }
+    window.location.reload()
+}
+function limpieza(){
+    localStorage.removeItem('carrito')
+    window.location.reload()
+}
+function car_list(){
+    const numero = document.getElementById('carrito_items')
+    let items = 0
+    if(localStorage.carrito){ items = localStorage.carrito.split(',').length / 2}
+    numero.innerText = `(${items})`
 }
 window.onload = add_categorias
 if (window.location.href === 'http://127.0.0.1:3000/'){
@@ -179,5 +249,8 @@ if (window.location.href.includes('lista')){
     }
 }
 if (window.location.href.endsWith('carrito')){
-    window.onload = display_car
+    window.onload = () =>{
+        add_categorias()
+        display_car()
+    }
 }
