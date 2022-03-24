@@ -15,11 +15,9 @@
                     <h1>Direccion de envio</h1>
                     <p>Nombre y apellido:</p>
                     <input type="text" name="nombre">
-                    <p>CC o NIT:</p>
-                    <input type="number" name="identificacion">
                     <p>Pais</p>
                     <select name="pais">
-                        <option value="colombia">Colombia</option>
+                        <option value="Colombia">Colombia</option>
                     </select>
                     <p>Departamento</p>
                     <select name="departamento">
@@ -65,26 +63,23 @@
                 <div>
                     <h1>Opciones de Envio</h1>
                     <div id="radio_seccion">
-                        <input type="radio" id="tienda" value="0" name="envio">
+                        <input type="radio" id="tienda" value="0" name="envio" checked>
                         <label for="tienda">Zipaquira. Recoger en bodega $0</label>
-                        <input type="radio" id="cundinamarca" value="5200" name="envio">
-                        <label for="cundinamarca">Envíos Bogotá Y Cundinamarca, sin incluir municipios apartados. Uno a dos días hábiles, $5200</label>
                         <input type="radio" id="nacional" value="9300" name="envio">
-                        <label for="nacional">Envíos Nacionales, sin incluir municipios apartados, $9300</label>
+                        <label for="nacional">Envíos Nacionales, sin incluir municipios apartados, $9.300</label>
                     </div>
                 </div>
                 <div>
                     <h1>Opciones de pago</h1>
                     <p>Metodo de pago:</p>
                     <select name="categoria">
-                        <option value="Tarjeta Credito">Tarjeta Credito</option>
-                        <option value="Tarjeta Debito">Tarjeta Debito</option>
+                        <option value="Tarjeta Credito">Mercado pago (Tarjeta)</option>
                         <option value="PSE">PSE</option>
                     </select>
                 <p>Total:</p>
-                <input type="number" name="stock" readonly>
+                <input type="text" id="total" readonly>
                 </div>
-                <button type="button" onclick="">Continuar</button>
+                <button type="button" onclick="validar_prepago()">Continuar</button>
             </div>
         </main>
     <%- include('./templates/footer.ejs') %> 

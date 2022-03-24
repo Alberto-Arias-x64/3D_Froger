@@ -109,6 +109,17 @@ exports.db = new function() {
             })
         })
     }
+    this.modificar_stock_dato = function(id,stock){
+        return new Promise((resolve,reject)=>{
+            db2.query("UPDATE articulos SET stock= stock - ? WHERE id = ? ",[stock,id],(err,res)=>{
+                if(!err){
+                    resolve({"mensaje":"ok"})
+                }else{
+                    resolve({"mensaje":"error"})
+                }
+            })
+        })
+    }
     this.consultar_nuevo = () =>{
         return new Promise ((resolve, reject)=>{
             db2.query('SELECT id,nombre,precio,imagen FROM articulos WHERE stock != 0 ORDER BY fecha DESC LIMIT 12',(err,res)=>{

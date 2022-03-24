@@ -43,10 +43,6 @@ exports.carrito = (req,res) =>{
 exports.comprar = (req,res) =>{
     res.render('comprar')
 }
-exports.comprar_post = (req,res) =>{
-    req.body
-    res.json({'status':'todo'})
-}
 exports.buscar_nuevo = (req,res) =>{
     db.consultar_nuevo()
     .then(respuesta =>{
@@ -88,4 +84,33 @@ exports.busqueda_producto = (req,res) =>{
 }
 exports.pago = (req,res) =>{
     res.render('pago')
+}
+exports.pago_post = (req,res) =>{
+    async function validar(){
+        let flag = false
+        for (let index = 0; index < req.body.productos.length; index+=2) {
+            const element = req.body.productos[index];
+            await db.consultar_unico(parseInt(element))
+            .then(res => {
+                if(req.body.productos[index+1] > res.stock){
+                    flag = !flag
+                }
+            })
+        }
+        return flag
+    }
+    validar()
+    .then(respuesta => {
+        if(respuesta == false){
+            for (let index = 0; index < req.body.productos.length; index+=2) {
+                const element = parseInt(req.body.productos[index]);
+                const stock = parseInt(req.body.productos[index + 1]);
+                db.modificar_stock_dato(element,stock)
+            }
+            res.status(200).json({mensaje:"Pago Realizado"})
+        }
+        else{
+            res.status(200).json({mensaje:"Error en stock revise productos"})
+        }
+    })
 }
