@@ -3,10 +3,12 @@ require('dotenv').config({path:'./.env'})
 const express = require('express')
 const session = require('express-session')
 const morgan = require('morgan')
+const helmet = require('helmet') // seguridad
 const app = express()
 const port = process.env.PORT
 
 //configuracion
+app.use(helmet())
 app.use(morgan('dev'))
 app.use(express.static('./public'))
 app.use('/producto/:id',express.static('./public'))
