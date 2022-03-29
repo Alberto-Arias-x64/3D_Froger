@@ -310,6 +310,37 @@ function validar_prepago(){
         alert('Datos faltantes')
     }
 }
+function enviar_correo(){
+    function limpiar_campos() {
+        document.getElementsByName('nombre')[0].value = ''
+        document.getElementsByName('email')[0].value = ''
+        document.getElementsByName('asunto')[0].value = ''
+        document.getElementsByName('mensaje')[0].value = ''
+    }
+
+    if(document.getElementsByName('nombre')[0].value && document.getElementsByName('email')[0].value && document.getElementsByName('asunto')[0].value && document.getElementsByName('mensaje')[0].value){
+        fetch('/correo',{
+            method : 'POST',
+            body: JSON.stringify({
+                "asunto":document.getElementsByName('asunto')[0].value,
+                "texto":`Hola soy ${document.getElementsByName('nombre')[0].value} con el correo ${document.getElementsByName('email')[0].value} y este es mi mensaje: ${document.getElementsByName('mensaje')[0].value}`, 
+                "html":""
+            }),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        })
+        .then(res => res.json())
+        .then(res => {
+            alert(res.mensaje)
+            
+        })
+        limpiar_campos()
+    }
+    else{
+        alert('Faltan Datos')
+    }
+}
 window.onload = add_categorias
 if (window.location.href.endsWith(window.location.href)){
     window.onload = () =>{

@@ -17,6 +17,7 @@ router.get('/comprar',control.comprar)
 router.get('/pago',control.pago)
 router.post('/pago',control.pago_post)
 router.post('/categoria',control.busqueda_categoria_post)
+router.post('/correo',control.enviar_correo)
 
 router.get('/admin/',validar_session,control_admin.main)
 router.get('/admin/consultar',validar_session,control_admin.consultar)

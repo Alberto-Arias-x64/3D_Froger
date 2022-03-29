@@ -8,7 +8,7 @@ const app = express()
 const port = process.env.PORT
 
 //configuracion
-app.use(helmet())
+//app.use(helmet()) para arreglar
 app.use(morgan('dev'))
 app.use(express.static('./public'))
 app.use('/producto/:id',express.static('./public'))

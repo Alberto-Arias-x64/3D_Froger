@@ -1,33 +1,35 @@
-const nodemailer = require('nodemailer');
-const config = require('../config/index');
+const { promiseImpl } = require("ejs");
+const nodemailer = require("nodemailer");
+require('dotenv').config('../.env')
 
-module.exports = sendMail = (email) => {
-  try {
-    let transporter = nodemailer.createTransport({
-      service: "outlook",
-      host: "smtp-mail.outlook.com",
-      port: 587,
-      secure: false, // true for 465, false for other ports
-      auth: {
-        user: "temp_user", 
-        pass: "temp_password",
-      },
-      tls: {
-        ciphers: 'SSLv3'
+// create reusable transporter object using the default SMTP transport
+const transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: '587',
+  auth: {
+    user: process.env.MAIL_USER,
+    pass: process.env.MAIL_PASSWORD,
+  },
+});
+
+exports.send_mail = async correo => {
+  return new Promise((resolve,reject) =>{
+    // send mail with defined transport object
+    let info ={
+      from: 'froger3d@gmail.com', // sender address
+      to: correo.destino || 'froger3d@gmail.com', // list of receivers
+      subject: correo.asunto, // Subject line
+      text: correo.texto, // plain text body
+      html: correo.html, // html body
+    };
+
+    transporter.sendMail(info,(err,data)=>{
+      if(err){
+        resolve('ERROR')
       }
-    });
-  
-    const text = `Please verify your account by click the following link: <br><br> <a href=127.0.0.1/verifyEmail/${email}/${verificationToken}>`;
-    const html = "";
-  
-    await transporter.sendMail({
-      from: "tempmail@outlook.com", // sender address
-      to: email,
-      subject: "Recuperacion de contraseña", // Subject line
-      text: text, 
-      html: "<b>Hello world?</b>", // html body
-    });
-  } catch (error) {
-    console.log(`Error sending the email => ${error}`);
-  }
-};
+      else{
+        resolve('SEND')
+      }
+    })
+  })
+}

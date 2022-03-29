@@ -1,6 +1,8 @@
 const res = require('express/lib/response')
 const session = require('express-session')
 const {db} = require('../model/model')
+const send_mail = require('../helpers/mail')
+const correo = require('../helpers/mail')
 
 exports.main = (req,res) => {
     try{
@@ -111,6 +113,18 @@ exports.pago_post = (req,res) =>{
         }
         else{
             res.status(200).json({mensaje:"Error en stock revise productos"})
+        }
+    })
+}
+exports.enviar_correo = (req,res) => {
+   correo.send_mail(req.body)
+    .then(respuesta => respuesta)
+    .then(respuesta => {
+        if(respuesta == 'SEND'){
+            res.status(200).json({mensaje : "Mensaje enviado"})
+        }
+        else{
+            res.status(200).json({mensaje : "Error al enviar correo"})
         }
     })
 }
