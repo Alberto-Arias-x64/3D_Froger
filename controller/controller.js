@@ -2,7 +2,7 @@ const res = require('express/lib/response')
 const session = require('express-session')
 const {db} = require('../model/model')
 const send_mail = require('../helpers/mail')
-const correo = require('../helpers/mail')
+const mail = require('../helpers/mail')
 
 exports.main = (req,res) => {
     try{
@@ -104,11 +104,53 @@ exports.pago_post = (req,res) =>{
     validar()
     .then(respuesta => {
         if(respuesta == false){
-            for (let index = 0; index < req.body.productos.length; index+=2) {
-                const element = parseInt(req.body.productos[index]);
-                const stock = parseInt(req.body.productos[index + 1]);
-                db.modificar_stock_dato(element,stock)
+            let pago_total = 0
+            let productos_total = []
+            async function control () {
+                for (let index = 0; index < req.body.productos.length; index+=2) {
+                    const element = parseInt(req.body.productos[index]);
+                    const stock = parseInt(req.body.productos[index + 1]);
+                    await db.consultar_unico(element)
+                    .then(consulta =>{
+                        console.log(consulta.precio)
+                        productos_total.push(`${consulta.nombre} x ${stock} `)
+                        pago_total = (parseInt(consulta.precio) * stock) + pago_total
+                        db.modificar_stock_dato(element,stock)
+                    })
+                }
             }
+            control().then(resultado => {
+                const {nombre,correo,telefono,departamento,ciudad,direccion,pago,envio} = req.body
+                const formatter = new Intl.NumberFormat('es-CO', {
+                    style: 'currency',
+                    currency: 'COP',
+                    minimumFractionDigits: 0
+                })
+                if (envio != 0){
+                    pago_total += 9300
+                }
+                pago_total = formatter.format(pago_total)
+                console.log('enviano correo')
+                mail.send_mail({
+                    destino : correo,
+                    asunto : "Tu compra en Froger 3D",
+                    texto : `Hola ${nombre} te agradecemos tu compra, te enviamos los datos que registraste en la pagina de pago si tienes algun inconveniente no dudes en contactarnos
+                    
+                    Telefono: ${telefono}
+                    Direccion: ${departamento} ${ciudad} ${direccion}
+                    Envio: ${envio}
+                    Productos: ${productos_total}
+                    Total: ${pago_total}
+                    Medio de pago: ${pago}
+
+                    Este mensaje fue enviado de manera Automatica
+                    `,
+                    html : ""
+                })
+                .then(res => {
+                    console.log('correo enviado')
+                })
+            })
             res.status(200).json({mensaje:"Pago Realizado"})
         }
         else{
@@ -117,7 +159,7 @@ exports.pago_post = (req,res) =>{
     })
 }
 exports.enviar_correo = (req,res) => {
-   correo.send_mail(req.body)
+   mail.send_mail(req.body)
     .then(respuesta => respuesta)
     .then(respuesta => {
         if(respuesta == 'SEND'){
@@ -127,4 +169,10 @@ exports.enviar_correo = (req,res) => {
             res.status(200).json({mensaje : "Error al enviar correo"})
         }
     })
+}
+exports.placeorder = (req,res) => {
+    res.render('placeorder')
+}
+exports.busqueda_consulta = (req,res) =>{
+    res.render('busqueda',{categoria : req.params.nombre})
 }

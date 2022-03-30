@@ -30,33 +30,23 @@ exports.db = new function() {
     this.categorias = () =>{
         return new Promise ((resolve,reject) =>{
             db2.query('SELECT * FROM categorias ORDER BY categoria',(err,res) =>{
-                if(!err){
-                    resolve(res)
-                }
+                if(!err){resolve(res)}
             })
         })
     }
     this.consultar_base = function() {
         return new Promise ((resolve,reject)=>{
             db2.query('SELECT * FROM articulos',(err,rows) =>{
-                if(!err){
-                    resolve(rows)
-                }
-                else{
-                    reject(err)
-                }
+                if(!err){resolve(rows)}
+                else{reject(err)}
             })
         })
     }
     this.consultar_unico = function(id) {
         return new Promise ((resolve,reject)=>{
             db2.query('SELECT * FROM articulos WHERE id = ?',[id],(err,rows) =>{
-                if(!err){
-                    resolve(rows[0])
-                }
-                else{
-                    resolve({"mensaje":"no"})
-                }
+                if(!err){resolve(rows[0])}
+                else{resolve({"mensaje":"no"})}
             })
         })
     }
@@ -76,71 +66,56 @@ exports.db = new function() {
     this.añadir_dato = function(datos){
         return new Promise((resolve,reject)=>{
             db2.query('INSERT INTO articulos(nombre,precio,stock,categoria,descripcion,imagen)VALUES(?,?,?,?,?,?)',[datos.nombre,datos.precio,datos.stock,datos.categoria,datos.descripcion,datos.url],(err)=>{
-                if(!err){
-                    resolve({"mensaje":"ok"})
-                }
-                else{
-                    resolve({"mensaje":"error"})
-                    console.error(err)
-                }
+                if(!err){resolve({"mensaje":"ok"})}
+                else{resolve({"mensaje":"error"})}
             })
         })
     }
     this.eliminar_dato = function(id){
         return new Promise  ((resolve,reject)=>{
             db2.query("DELETE FROM articulos WHERE id = ?",[id],err=>{
-                if(!err){
-                    resolve({"mensaje":"ok"})
-                }
-                else{
-                    resolve({"mensaje":"error"})
-                }
+                if(!err){resolve({"mensaje":"ok"})}
+                else{resolve({"mensaje":"error"})}
             })
         })
     }
     this.modificar_dato = function(id,datos){
         return new Promise((resolve,reject)=>{
             db2.query("UPDATE articulos SET nombre=?,precio=?,stock=?,categoria=?,descripcion=?,imagen=? WHERE id = ? ",[datos.nombre,datos.precio,datos.stock,datos.categoria,datos.descripcion,datos.url,id],(err,res)=>{
-                if(!err){
-                    resolve({"mensaje":"ok"})
-                }else{
-                    resolve({"mensaje":"error"})
-                }
+                if(!err){resolve({"mensaje":"ok"})}
+                else{resolve({"mensaje":"error"})}
             })
         })
     }
     this.modificar_stock_dato = function(id,stock){
         return new Promise((resolve,reject)=>{
             db2.query("UPDATE articulos SET stock= stock - ? WHERE id = ? ",[stock,id],(err,res)=>{
-                if(!err){
-                    resolve({"mensaje":"ok"})
-                }else{
-                    resolve({"mensaje":"error"})
-                }
+                if(!err){resolve({mensaje:"ok"})}
+                else{resolve({mensaje:"error"})}
             })
         })
     }
     this.consultar_nuevo = () =>{
         return new Promise ((resolve, reject)=>{
             db2.query('SELECT id,nombre,precio,imagen FROM articulos WHERE stock != 0 ORDER BY fecha DESC LIMIT 12',(err,res)=>{
-                if(!err){
-                    resolve(res)
-                }
-                else{
-                    resolve({mensaje:"no"})
-                }
+                if(!err){resolve(res)}
+                else{resolve({mensaje:"no"})}
             })
         })
     }
     this.consultar_categoria = categoria =>{
         return new Promise ((resolve,reject) =>{
             db2.query('SELECT id,nombre,precio,imagen FROM articulos WHERE categoria = ? LIMIT 40;',[categoria],(err,rows) =>{
-                if(!err){
-                    resolve(rows)
-                }
-                else{
-                    resolve({mensaje:"error"})
-                }
+                if(!err){resolve(rows)}
+                else{resolve({mensaje:"error"})}
+            })
+        })
+    }
+    this.busqueda = nombre =>{
+        return new Promise ((resolve,reject) => {
+            db2.query('SELECT * FROM articulos WHERE nombre = ?',[nombre],(err,res) => {
+                if(!err){resolve(res)}
+                else{resolve({mensaje:"error"})}
             })
         })
     }

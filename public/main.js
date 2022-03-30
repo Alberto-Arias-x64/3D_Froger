@@ -272,6 +272,7 @@ function Pagar(){
         method: "POST",
         body: JSON.stringify({
             correo : document.getElementsByName('correo')[0].value,
+            nombre : document.getElementsByName('nombre')[0].value,
             telefono : document.getElementsByName('telefono')[0].value,
             departamento : document.getElementsByName('departamento')[0].value,
             ciudad : document.getElementsByName('ciudad')[0].value,
@@ -341,11 +342,23 @@ function enviar_correo(){
         alert('Faltan Datos')
     }
 }
-window.onload = add_categorias
+function busqueda(){
+    document.getElementById('busqueda').addEventListener('keypress',function(e){
+        if(e.key == 'Enter'){
+            const nombre = document.getElementById('busqueda').value
+            window.location.href= '/busqueda/' + nombre
+        }
+    })
+}
+window.onload = () =>{
+    add_categorias()
+    busqueda()
+} 
 if (window.location.href.endsWith(window.location.href)){
     window.onload = () =>{
         add_categorias()
         add_card()  
+        busqueda()
     }
 }
 if (window.location.href.includes('producto')){
@@ -353,24 +366,28 @@ if (window.location.href.includes('producto')){
         add_categorias()
         stock()
         imprimir_imagen()
+        busqueda()
     }
 }
 if (window.location.href.includes('lista')){
     window.onload = () =>{
         add_categorias()
         add_card_categoria()
+        busqueda()
     }
 }
 if (window.location.href.endsWith('carrito')){
     window.onload = () =>{
         add_categorias()
         display_car()
+        busqueda()
     }
 }
 if (window.location.href.endsWith('pago')){
     window.onload = () =>{
         add_categorias()
         precio_final()
+        busqueda()
         document.getElementById('radio_seccion').addEventListener('change',precio_final)
     }
 }
