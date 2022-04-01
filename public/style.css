@@ -118,7 +118,7 @@ header{
     align-items: center;
 }
 #search div{
-    width: 300px;
+    width: 250px;
     height: 35px;
     background-color:var(--search_color);
     display: flex;
@@ -287,14 +287,29 @@ footer li{
     padding: 5px;
 }
 /*//////////////////////add////////////////////////*/
+.add_img{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
 #add{
     width: 350px;
-    display: grid;
+    display: flex;
+    flex-direction: column;
     font-size: 1.5rem;
-    grid-template-columns: 1fr 3fr;
-    grid-template-rows: 6;  
-    grid-gap: 5px;
     margin: 5px;
+}
+#add > *{
+    padding: 5px;
+}
+#img_add{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#img_add > img{
+    max-height: 400px;
+    max-width: 600px;
 }
 /*//////////////////////show////////////////////////*/
 #show{
@@ -410,7 +425,7 @@ footer li{
     margin: 10px;
 }
 #servicios img{
-    border-radius: 5px;
+    border-radius: 2px;
     width: 300px;
 }
 #boton_contacto{
@@ -456,6 +471,11 @@ footer li{
     font-size: 1.6rem;
 }
 /*//////////////////////Carrito////////////////////////*/
+#titulo_carrito{
+    display: block;
+    font-size: 4rem;
+    text-align: center;
+}
 td > a > img{
     width: calc(400px * 0.4);
     height: calc(250px * 0.4);
@@ -484,4 +504,15 @@ td > a > img{
 }
 #radio_seccion > *{
     margin: 5px 0;
+}
+/*////////////////////////busqueda/////////////////////*/
+#busqueda{
+    justify-content: flex-start !important;
+    flex-direction: column;
+    align-items: center;
+}
+#categoria{
+    padding: 0 30%;
+    font-size: 4rem;
+    display: inline-block;
 }

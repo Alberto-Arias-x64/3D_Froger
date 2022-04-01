@@ -16,6 +16,7 @@ app.use('/lista/:categoria',express.static('./public'))
 app.use('/admin/add',express.static('./public'))
 app.use('/admin/update',express.static('./public'))
 app.use('/admin/',express.static('./public'))
+app.use('/busqueda/',express.static('./public'))
 app.use(express.json())
 app.set('view engine', 'ejs')
 app.use(session({

@@ -1,9 +1,9 @@
 <%- include('./templates/header.ejs')  %>
 <body>
     <%- include('./templates/navbar.ejs')  %>
-        <main id="read_key">
-            <h1>Añadir producto</h1>
+        <main id="read_key" class="add_img">
             <div id="add">
+                <h1>Añadir producto</h1>
                 <p>Nombre:</p>
                 <input type="text" name="nombre" autofocus>
                 <p>Precio:</p>
@@ -17,12 +17,12 @@
                 <input type="number" name="stock">
                 <p>URL imagen:</p>
                 <input type="url" name="dir" placeholder="Solo google" onchange="imprimir_imagen()">
+                <button type="button" onclick="check()">Enviar</button>
             </div>
-            <button type="button" onclick="check()">Enviar</button>
+            <div id="img_add">
+                <img id=img_placeholder src="" alt="No found">
+            </div>
         </main>
-        <div style="height: 200px; width: 400px;">
-            <img id=img_placeholder src="" style="height: 200px; width: 400px;" alt="No found">
-        </div>
     <%- include('./templates/footer.ejs') %> 
     <script src="main.js"></script>
     <script src="admin.js"></script>

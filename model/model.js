@@ -111,9 +111,9 @@ exports.db = new function() {
             })
         })
     }
-    this.busqueda = nombre =>{
+    this.busqueda_personalizada = nombre =>{
         return new Promise ((resolve,reject) => {
-            db2.query('SELECT * FROM articulos WHERE nombre = ?',[nombre],(err,res) => {
+            db2.query("SELECT * FROM articulos WHERE nombre LIKE '%"+nombre+"%' ",(err,res) => {
                 if(!err){resolve(res)}
                 else{resolve({mensaje:"error"})}
             })

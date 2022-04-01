@@ -35,14 +35,16 @@ function imprimir_tabla(){
     })
 }
 function eliminar_dato(iddelete){
-    fetch("/admin",{
-        method:'DELETE',
-        headers: {
-          'Content-Type':'application/json',
-        },
-        body: JSON.stringify({id:iddelete})
-        })
-    .then(()=>window.location.href = "/admin")
+    if(confirm('Desea eliminar el dato') == true){
+        fetch("/admin",{
+            method:'DELETE',
+            headers: {
+              'Content-Type':'application/json',
+            },
+            body: JSON.stringify({id:iddelete})
+            })
+        .then(()=>window.location.href = "/admin")
+    }
 }
 function actualizar_dato(idupdate){
     location.href=`/admin/update/${idupdate}`

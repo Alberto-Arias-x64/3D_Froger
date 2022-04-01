@@ -350,6 +350,40 @@ function busqueda(){
         }
     })
 }
+async function cards_busqueda(busqueda){
+    let smo = fetch(`/unico/${busqueda}`)
+    .then(res => res.json())
+    return await smo
+}
+function add_card_busqueda(){
+    const card = document.getElementsByClassName('grid_card')[0]
+    const busqueda = document.getElementById('categoria').innerText
+    cards_busqueda(busqueda)
+    .then(datos =>{
+        console.log(datos.length)
+        if(datos.length != 0){
+            datos.forEach(element => {
+                let insercion =`
+                <div class="card">
+                    <div class="card_img"> 
+                        <a href="/producto/${element.id}">
+                            <img src="${buscar_imagen(element.imagen)}" alt="imagen">
+                        </a>
+                    </div>
+                    <div class="card_text">
+                        <p class="nombre">${element.nombre}</p>
+                        <p class="precio">${element.precio}</p>
+                    </div>
+                </div>`
+            card.insertAdjacentHTML("beforeend",insercion)
+            })
+        }
+        else{
+            alert('no se encontraron datos')
+            window.location.href = '/'
+        }
+    })
+}
 window.onload = () =>{
     add_categorias()
     busqueda()
@@ -389,5 +423,12 @@ if (window.location.href.endsWith('pago')){
         precio_final()
         busqueda()
         document.getElementById('radio_seccion').addEventListener('change',precio_final)
+    }
+}
+if (window.location.href.includes('busqueda')){
+    window.onload = () =>{
+        add_categorias()
+        busqueda()
+        add_card_busqueda()
     }
 }

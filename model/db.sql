@@ -16,3 +16,4 @@ SELECT * FROM articulos ORDER BY fecha DESC LIMIT 2;
 
 SELECT id FROM articulos WHERE categoria = 'Arte' LIMIT 40;
 SELECT id,nombre,precio,imagen FROM articulos WHERE stock != 0 ORDER BY fecha DESC LIMIT 12;
+SELECT * FROM articulos WHERE nombre LIKE '%simio%'

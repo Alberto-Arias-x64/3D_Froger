@@ -173,6 +173,12 @@ exports.enviar_correo = (req,res) => {
 exports.placeorder = (req,res) => {
     res.render('placeorder')
 }
-exports.busqueda_consulta = (req,res) =>{
+exports.busqueda_personalizada = (req,res) =>{
+    db.busqueda_personalizada(req.params.nombre)
+    .then(respuesta => {
+        res.json(respuesta)
+    })
+}
+exports.busqueda_unica = (req,res) =>{
     res.render('busqueda',{categoria : req.params.nombre})
 }
