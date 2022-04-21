@@ -481,6 +481,10 @@ td > a > img{
     height: calc(250px * 0.4);
 }
 /*/////////////////////pay////////////////////////////*/
+#pagos{
+    display: flex;
+    justify-content: center;
+}
 #pay{
     font-size: 1.5rem;
     width: 400px;
@@ -515,4 +519,22 @@ td > a > img{
     padding: 0 30%;
     font-size: 4rem;
     display: inline-block;
+}
+/*////////////////////// placeorder///////////////////*/
+#placeorder{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#placeorder_img{
+    height: 300px;
+}
+#placeorder_img > img{
+    height: 100%;   
+}
+#placeorder > h1{
+    font-size: 3rem;
+}
+#placeorder > p{
+    font-size: 2rem;
 }

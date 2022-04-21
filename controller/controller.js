@@ -25,6 +25,7 @@ exports.servicios = (req,res) =>{
 exports.producto = (req,res) =>{
     db.consultar_unico(req.params.id)
     .then(respuesta => {
+        console.log(respuesta)
         if(!respuesta){
             res.render('404')
         }

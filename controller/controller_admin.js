@@ -1,5 +1,6 @@
 const res = require('express/lib/response')
 const mysql = require('mysql')
+const jwt = require('jsonwebtoken')
 const session = require('express-session')
 const {db} = require('../model/model')
 require('dotenv').config({path:'../.env'})
@@ -18,6 +19,10 @@ exports.main = (req,res) =>{
 exports.login = (req,res) =>{
     req.session.usuario = req.body.usuario
     req.session.password = req.body.password
+    const admin ={
+        usuario : req.session.usuario,
+        password : req.session.password
+    }
     if(req.session.usuario == process.env.ADMIN_USER && req.session.password == process.env.ADMIN_PASSWORD){
         res.json({mensaje:"ok"})
     }

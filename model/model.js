@@ -44,10 +44,11 @@ exports.db = new function() {
     }
     this.consultar_unico = function(id) {
         return new Promise ((resolve,reject)=>{
-            db2.query('SELECT * FROM articulos WHERE id = ?',[id],(err,rows) =>{
-                if(!err){resolve(rows[0])}
+            db2.query('SELECT * FROM articulos WHERE id = ?',[id],datos)
+            function datos(err,rows) {
+                if(!err){resolve(rows[0]) }
                 else{resolve({"mensaje":"no"})}
-            })
+            }
         })
     }
     /* this.consultar_unico = async id =>{
