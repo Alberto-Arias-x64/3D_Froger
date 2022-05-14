@@ -108,7 +108,7 @@ header{
     align-items: center;
 }
 #logo img{
-    width: 150px;
+    width: 200px;
     object-fit: contain;
     cursor: pointer;
 }
@@ -216,6 +216,10 @@ footer li{
     height: 65vh;
     display: grid;
     grid-template-columns: 3fr 2fr;
+}
+#grid_principal > img{
+    transform: scale(1.2);
+    margin-top: 150px;
 }
 .principal_grid{
     max-width: 100%;
