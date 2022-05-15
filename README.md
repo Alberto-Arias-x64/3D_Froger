@@ -13,15 +13,21 @@ Proyecto personal para ampliar la visibilidad de mis productos 3D
 ## Funciones
 
 - Diseño responsivo
+- 
 - Almacenamiento del carrito en el local Storage
+- 
 - Panel de gestión de productos y pedidos
+- 
 - Automatización de correos
 
 ## Roadmap
 
 - Añadir pasarela de compra
+- 
 - Mejorar la visualización en dispositivos móviles
+- 
 - Agregar almacenamiento delos productos en el servidor
+- 
 - Desplegar online
 
 ## Variables de entorno
